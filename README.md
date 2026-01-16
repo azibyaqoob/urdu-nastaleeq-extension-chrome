@@ -4,7 +4,7 @@
 
 Say goodbye to the thin, hard-to-read default Arabic fonts used by most browsers. This extension brings the **Noto Nastaliq Urdu** and **Jameel Noori Nastaleeq** fonts to Every corner of the web!
 
-[![Urdu Font Preview](https://github.com/azibyaqoob/urdu-nastaleeq-extension-chrome/raw/main/icons/icon128.png)](https://github.com/azibyaqoob/urdu-nastaleeq-extension-chrome)
+[![Urdu Font Preview](https://github.com/azibyaqoob/urdu-nastaleeq-extension-chrome/raw/main/icons/icon128.png)]
 
 ---
 
@@ -68,4 +68,5 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 
 ---
 *Made with ❤️ for the Urdu Community.*
+
 
