@@ -30,9 +30,8 @@ observer.observe(document.body, { childList: true, subtree: true });
 
 // Listen for font size changes
 chrome.storage.sync.get(['fontSize'], (result) => {
-    if (result.fontSize) {
-        updateFontSize(result.fontSize);
-    }
+    const size = result.fontSize || 18;
+    updateFontSize(size);
 });
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {

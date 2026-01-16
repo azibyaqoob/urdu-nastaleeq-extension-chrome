@@ -4,7 +4,7 @@ const resetBtn = document.getElementById('resetBtn');
 
 // Load current settings
 chrome.storage.sync.get(['fontSize'], (result) => {
-    const currentSize = result.fontSize || 24;
+    const currentSize = result.fontSize || 18;
     fontSizeInput.value = currentSize;
     sizeVal.textContent = currentSize;
 });
@@ -25,7 +25,7 @@ fontSizeInput.addEventListener('input', (e) => {
 
 // Reset
 resetBtn.addEventListener('click', () => {
-    const defaultSize = 24;
+    const defaultSize = 18;
     fontSizeInput.value = defaultSize;
     sizeVal.textContent = defaultSize;
     chrome.storage.sync.set({ fontSize: defaultSize });
