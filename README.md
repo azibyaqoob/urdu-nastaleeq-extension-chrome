@@ -1,63 +1,70 @@
 # Pak Urdu Nastaleeq - The Best Urdu Font Chrome Extension 🚀
 
-[![Urdu Nastaleeq Extension](https://img.shields.io/badge/Urdu-Nastaleeq-green.svg)](https://github.com/azibyaqoob/urdu-nastaleeq-extension-chrome)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+**Pak Urdu Nastaleeq** is a premium, lightweight Google Chrome extension that automatically detects Urdu text on any webpage and renders it in the beautiful, classical **Nastaleeq script**. 
 
-<img width="1781" height="879" alt="image" src="https://github.com/user-attachments/assets/6313678a-5c33-488e-8bc9-2b61235b9971" />
+Say goodbye to the thin, hard-to-read default Arabic fonts used by most browsers. This extension brings the **Noto Nastaliq Urdu** and **Jameel Noori Nastaleeq** fonts to Every corner of the web!
 
-**Pak Urdu Nastaleeq** is a powerful and lightweight Google Chrome extension that automatically detects Urdu text on any webpage and renders it in the beautiful, classical **Nastaleeq script**. Say goodbye to the hard-to-read default Arabic fonts and enjoy a premium Urdu reading experience!
+[![Urdu Font Preview](https://github.com/azibyaqoob/urdu-nastaleeq-extension-chrome/raw/main/icons/icon128.png)](https://github.com/azibyaqoob/urdu-nastaleeq-extension-chrome)
 
 ---
 
 ## 🌟 Why Pak Urdu Nastaleeq?
 
-If you frequently browse Urdu websites like BBC Urdu, Dawn News, or Social Media, you know that the default fonts can be modern and thin, making them difficult to read. This extension brings the **Noto Nastaliq Urdu** font to every corner of the web.
+If you frequently browse Urdu news sites like **BBC Urdu**, **Dawn News**, or spend time on **Social Media (Facebook, Twitter)**, you know that default fonts can be modern and flat, making reading long articles a strain. 
 
-### Key Features:
-- **Auto-Detection**: Automatically identifies Urdu script using advanced regex.
-- **Nastaleeq Rendering**: Converts thin Arabic fonts into thick, beautiful Nastaleeq.
-- **Custom Font Size**: Adjust the font size (12px to 60px) via a simple popup.
-- **Offline Ready**: Includes built-in Noto Nastaliq Urdu fonts—no internet required!
-- **Fast & Lightweight**: Zero lag, optimized for Chrome and Brave browsers.
-- **Privacy First**: No data collection, everything happens locally on your computer.
+Pak Urdu Nastaleeq is designed to solve this by providing a thick, calligraphic rendered script that feels natural and premium.
+
+### 🚀 Key Features:
+- **Precision Detection**: Automatically identifies Urdu script while leaving English and other languages untouched.
+- **5 Premium Fonts**: Choose between *Noto Nastaliq Urdu*, *Jameel Noori*, *Gulzar*, and more.
+- **Dynamic Font Size**: Instantly scale Urdu text from **12px to 60px** without breaking the layout.
+- **Per-Site Controls**: Enable or disable the extension for specific websites (e.g., enable on BBC but keep default on others).
+- **Offline Ready**: All fonts are bundled locally. **No internet connection needed** to render fonts!
+- **Privacy Focused**: No tracking, no data collection, and zero external API calls.
+
+---
+
+## 🔍 Who is this Extension for?
+
+This extension is highly optimized for users searching for:
+- **Urdu font chrome extension**
+- **Nastaleeq font for google chrome**
+- **How to fix Urdu font in browser**
+- **Best Urdu reader for Chrome**
+- **Jameel Noori Nastaleeq extension**
+- **Noto Nastaliq Urdu for web**
 
 ---
 
 ## 🛠️ How to Install (Step-by-Step)
 
-Since this is an open-source project, you can install it directly via **Developer Mode**:
+Since this is an open-source project, you can install it via **Developer Mode** in seconds:
 
-1. **Download the Extension**: Click the green **Code** button above and select **Download ZIP**.
-2. **Extract the Files**: Unzip the downloaded file to a folder on your computer (e.g., `Documents/urdu-nastaleeq-extension-chrome`).
-3. **Open Chrome Extensions**: In your browser address bar, go to `chrome://extensions/`.
-4. **Enable Developer Mode**: Toggle the switch in the top-right corner to **ON**.
-5. **Load the Extension**: Click the **Load unpacked** button in the top-left.
-6. **Select Folder**: Choose the `urdu-nastaleeq-extension` folder you just extracted.
-7. **Done!**: The Pak Urdu Nastaleeq icon will appear in your extensions list. Pin it for easy access!
+1. **Download**: Click the green `Code` button and select **Download ZIP**.
+2. **Extract**: Unzip the file to a folder on your computer (e.g., `Documents/pak-urdu-nastaleeq`).
+3. **Open Extensions**: Go to `chrome://extensions/` in your browser.
+4. **Developer Mode**: Toggle the switch in the top-right corner to **ON**.
+5. **Load Unpacked**: Click the **Load unpacked** button and select the folder you just extracted.
+6. **Pin it**: Find the 'Ain' (ع) icon in your extensions list and pin it for quick access!
 
 ---
 
 ## 📖 How to Use
-
-1. Click on the **Pak Urdu Nastaleeq** icon in your browser toolbar.
-2. Use the **Font Size** slider to increase or decrease the text size to your liking.
-3. The changes will apply instantly to any Urdu text on the page!
-4. Click **Reset to Default** if you want to go back to 18px.
-
----
-
-## 🔍 Who this Extension Designed for
-This extension is designed for users searching for:
-*Urdu font chrome extension*, *Nastaleeq font for chrome*, *Urdu script reader*, *how to change urdu font in browser*, *best urdu extension for chrome*, *Noto Nastaliq Urdu extension*.
+1. Click the **Pak Urdu Nastaleeq** icon in your toolbar.
+2. Use the **Global Toggle** to turn it on/off everywhere.
+3. Use the **Font Select** to try different styles (we recommend *Noto* for clarity).
+4. Use the **Font Size** slider to find your perfect reading zoom.
+5. Use **Compatibility Mode** if a specific website's layout looks slightly broken.
 
 ---
 
 ## 🤝 Contributing
-Feel free to fork this project, report bugs, or suggest features! 
+Contributions are welcome! If you have a font suggestion or want to improve the detection algorithm, feel free to fork the repository and submit a pull request.
+
+**Repository Link**: [https://github.com/azibyaqoob/urdu-nastaleeq-extension-chrome](https://github.com/azibyaqoob/urdu-nastaleeq-extension-chrome)
 
 ## ⚖️ License
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the **MIT License**. See `LICENSE` for more information.
 
 ---
 *Made with ❤️ for the Urdu Community.*
-

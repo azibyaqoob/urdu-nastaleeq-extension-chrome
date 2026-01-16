@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Pak Urdu Nastaleeq",
-  "version": "1.2",
-  "description": "Applies Nastaleeq font to Urdu text and allows font size adjustment. Fixed icon issues.",
+  "version": "1.9",
+  "description": "Premium Urdu Nastaleeq with Deep Sleep mode—zero interference on English pages. Noto Nastaliq Urdu included.",
   "permissions": [
     "storage",
     "activeTab"
@@ -23,9 +23,6 @@
       ],
       "js": [
         "content.js"
-      ],
-      "css": [
-        "inject.css"
       ]
     }
   ],
