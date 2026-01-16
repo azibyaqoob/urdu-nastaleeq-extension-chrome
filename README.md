@@ -1,7 +1,9 @@
 # Pak Urdu Nastaleeq - The Best Urdu Font Chrome Extension 🚀
 
-[![Urdu Nastaleeq Extension](https://img.shields.io/badge/Urdu-Nastaleeq-green.svg)](https://github.com/your-username/urdu-nastaleeq-extension)
+[![Urdu Nastaleeq Extension](https://img.shields.io/badge/Urdu-Nastaleeq-green.svg)](https://github.com/azibyaqoob/urdu-nastaleeq-extension-chrome)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+<img width="1781" height="879" alt="image" src="https://github.com/user-attachments/assets/6313678a-5c33-488e-8bc9-2b61235b9971" />
 
 **Pak Urdu Nastaleeq** is a powerful and lightweight Google Chrome extension that automatically detects Urdu text on any webpage and renders it in the beautiful, classical **Nastaleeq script**. Say goodbye to the hard-to-read default Arabic fonts and enjoy a premium Urdu reading experience!
 
@@ -26,7 +28,7 @@ If you frequently browse Urdu websites like BBC Urdu, Dawn News, or Social Media
 Since this is an open-source project, you can install it directly via **Developer Mode**:
 
 1. **Download the Extension**: Click the green **Code** button above and select **Download ZIP**.
-2. **Extract the Files**: Unzip the downloaded file to a folder on your computer (e.g., `Documents/urdu-nastaleeq-extension`).
+2. **Extract the Files**: Unzip the downloaded file to a folder on your computer (e.g., `Documents/urdu-nastaleeq-extension-chrome`).
 3. **Open Chrome Extensions**: In your browser address bar, go to `chrome://extensions/`.
 4. **Enable Developer Mode**: Toggle the switch in the top-right corner to **ON**.
 5. **Load the Extension**: Click the **Load unpacked** button in the top-left.
@@ -40,11 +42,11 @@ Since this is an open-source project, you can install it directly via **Develope
 1. Click on the **Pak Urdu Nastaleeq** icon in your browser toolbar.
 2. Use the **Font Size** slider to increase or decrease the text size to your liking.
 3. The changes will apply instantly to any Urdu text on the page!
-4. Click **Reset to Default** if you want to go back to 24px.
+4. Click **Reset to Default** if you want to go back to 18px.
 
 ---
 
-## 🔍 SEO & Keywords
+## 🔍 Who this Extension Designed for
 This extension is designed for users searching for:
 *Urdu font chrome extension*, *Nastaleeq font for chrome*, *Urdu script reader*, *how to change urdu font in browser*, *best urdu extension for chrome*, *Noto Nastaliq Urdu extension*.
 
@@ -58,3 +60,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 *Made with ❤️ for the Urdu Community.*
+
