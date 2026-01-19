@@ -19,16 +19,17 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         }
     }
 
-    // Load settings
+    // Load settings - Defaults updated for v1.9.1 (Jameel / 24px)
     chrome.storage.sync.get(['globalEnable', 'siteSettings', 'fontSize', 'fontFamily', 'compatMode'], (result) => {
         globalEnable.checked = result.globalEnable !== false;
 
         const siteSettings = result.siteSettings || {};
         siteEnable.checked = siteSettings[currentHost] !== false;
 
-        fontSelect.value = result.fontFamily || "Noto Nastaliq Urdu";
-        fontSizeInput.value = result.fontSize || 18;
-        sizeVal.textContent = (result.fontSize || 18) + "px";
+        // NEW SMART DEFAULTS: Jameel Noori + 24px if not set
+        fontSelect.value = result.fontFamily || "Jameel Noori Nastaleeq";
+        fontSizeInput.value = result.fontSize || 24;
+        sizeVal.textContent = (result.fontSize || 24) + "px";
         compatMode.checked = result.compatMode === true;
     });
 });
@@ -46,8 +47,8 @@ function saveSettings() {
         siteSettings[currentHost] = siteEnable.checked;
         settings.siteSettings = siteSettings;
 
+        // Force update active tab immediately so user feels the power
         chrome.storage.sync.set(settings, () => {
-            // Update the active tab immediately
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
                 if (tabs[0]) {
                     chrome.tabs.sendMessage(tabs[0].id, {
@@ -72,10 +73,11 @@ fontSizeInput.addEventListener('input', (e) => {
 compatMode.addEventListener('change', saveSettings);
 
 resetBtn.addEventListener('click', () => {
+    // Reset to the new smart defaults
     const defaultSettings = {
         globalEnable: true,
-        fontFamily: "Noto Nastaliq Urdu",
-        fontSize: 18,
+        fontFamily: "Jameel Noori Nastaleeq", // Default changed
+        fontSize: 24,                         // Default changed
         compatMode: false
     };
 

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Pak Urdu Nastaleeq",
-  "version": "1.9",
+  "version": "1.9.1",
   "description": "Premium Urdu Nastaleeq with Deep Sleep mode—zero interference on English pages. Noto Nastaliq Urdu included.",
   "permissions": [
     "storage",
