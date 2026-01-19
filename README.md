@@ -20,6 +20,14 @@ Experience the web in your language as it was meant to be read. Say goodbye to t
 ![Before and After Comparison](screenshots/comparison.png)
 
 ---
+## 🆙 Updating to v1.9.1 (Important)
+
+If you are updating from an older version in **Developer Mode**:
+1.  **Remove Old Version**: Go to `chrome://extensions/` and click **Remove** on the old "Pak Urdu Nastaleeq".
+2.  **Delete Folder**: Delete the old extension folder from your computer to ensure a clean slate.
+3.  **Install New**: Download and extract the latest v1.9.1 zip, then "Load Unpacked" pointing to the new folder.
+*This ensures all new "Keyboard Protection" features work correctly without caching issues.*
+---
 
 ## 🌟 Why Pak Urdu Nastaleeq?
 
@@ -31,8 +39,10 @@ If you frequently browse Urdu news sites like **BBC Urdu**, **Dawn News**, or sp
 - **Universal Support**: Works seamlessly on all dynamic websites using modern JavaScript injection.
 
 ### 🚀 Key Features:
-- **Surgical Detection v1.9**: Automatically identifies Urdu segments while leaving English text 100% untouched. No more layout shifts!
-- **5 Premium Fonts**: Choose between *Noto Nastaliq Urdu (Default)*, *Jameel Noori Nastaleeq*, *Gulzar*, and integrated system fonts.
+- **Surgical Detection**: Automatically identifies Urdu segments while leaving English text 100% untouched. No more layout shifts!
+- **5 Premium Fonts**: Choose between *Jameel Noori Nastaleeq (Default)*, *Noto Nastaliq Urdu*, *Gulzar*, and integrated system fonts.
+- **Auto-Inherit Mode (v1.9.1)**: Intelligently respects the native sizing of news sites (like Jang, BBC) to prevent layout breakage, while giving you full override control.
+- **Universal Keyboard Protection**: Type freely! The extension now automatically detects and protects virtual keyboards and input fields from interference.
 - **Dynamic Font Size**: Instantly scale Urdu text from **12px to 60px** with a real-time slider.
 - **Per-Site Settings**: Enable or disable the extension specifically for the website you are currently visiting.
 - **Deep Sleep Mode**: Zero performance impact. The extension stays dormant until it detects Urdu text on the page.
@@ -84,3 +94,4 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 
 ---
 *Made with ❤️ for the Urdu Community. Enhance your reading experience today!*
+
