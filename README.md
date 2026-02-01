@@ -88,6 +88,7 @@ Since this is an open-source project, you can install it via **Developer Mode** 
 Contributions are welcome! If you have a font suggestion or want to improve the detection algorithm, feel free to fork the repository and submit a pull request.
 
 **Official Repository**: [https://github.com/azibyaqoob/urdu-nastaleeq-extension-chrome](https://github.com/azibyaqoob/urdu-nastaleeq-extension-chrome)
+
 **Chrome Web Store**: [https://chromewebstore.google.com/detail/pak-urdu-nastaleeq/gdfckiaimpjllaljifoihoilhaekmihl](https://chromewebstore.google.com/detail/pak-urdu-nastaleeq/gdfckiaimpjllaljifoihoilhaekmihl)
 
 ## ⚖️ License
@@ -95,5 +96,6 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 
 ---
 *Made with ❤️ for the Urdu Community. Enhance your reading experience today!*
+
 
 
