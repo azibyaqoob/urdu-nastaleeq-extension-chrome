@@ -26,10 +26,10 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const siteSettings = result.siteSettings || {};
         siteEnable.checked = siteSettings[currentHost] !== false;
 
-        // NEW SMART DEFAULTS: Jameel Noori + 24px if not set
+        // NEW SMART DEFAULTS: Jameel Noori + 20px if not set
         fontSelect.value = result.fontFamily || "Jameel Noori Nastaleeq";
-        fontSizeInput.value = result.fontSize || 24;
-        sizeVal.textContent = (result.fontSize || 24) + "px";
+        fontSizeInput.value = result.fontSize || 20;
+        sizeVal.textContent = (result.fontSize || 20) + "px";
         compatMode.checked = result.compatMode === true;
     });
 });
@@ -55,6 +55,9 @@ function saveSettings() {
                         action: "updateSettings",
                         settings: settings,
                         isSiteEnabled: siteEnable.checked
+                    }, () => {
+                        // Silence errors if the content script isn't loaded (e.g. system pages)
+                        if (chrome.runtime.lastError) { /* ignore */ }
                     });
                 }
             });
@@ -76,8 +79,8 @@ resetBtn.addEventListener('click', () => {
     // Reset to the new smart defaults
     const defaultSettings = {
         globalEnable: true,
-        fontFamily: "Jameel Noori Nastaleeq", // Default changed
-        fontSize: 24,                         // Default changed
+        fontFamily: "Jameel Noori Nastaleeq",
+        fontSize: 20,
         compatMode: false
     };
 

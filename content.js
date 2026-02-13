@@ -1,77 +1,17 @@
 // Comprehensive Urdu/Arabic script regex
 const urduRegexRange = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\FB50-\uFDFF\uFE70-\uFEFF\u200C\u200F\u064B-\u065F\u06D6-\u06ED]+/;
-const urduLettersOnly = /[\u0621-\u064A\u0671-\u06D3\u06D5\u06F0-\u06F9\uFDF2\uFDFA-\uFDFB]/;
+// Removed specific ligatures as per user request
+const urduLettersOnly = /[\u0621-\u064A\u0671-\u06D3\u06D5\u06F0-\u06F9\uFDFA-\uFDFB]/;
 
 let extensionSettings = {
     globalEnable: true,
     fontFamily: "Jameel Noori Nastaleeq",
-    fontSize: 24,
+    fontSize: 20,
     compatMode: false,
     isSiteEnabled: true
 };
 
 let isWokenUp = false;
-
-const NEWS_DOMAINS = [
-    'jang.com.pk',
-    'bbc.com',
-    'express.pk',
-    'dawn.com',
-    'geonews.tv',
-    'thenews.com.pk',
-    'independenturdu.com',
-    'urduvoa.com'
-];
-
-/**
- * Normalizes Urdu text to ensure maximum compatibility with Jameel Noori Nastaleeque ligatures.
- */
-function normalizeUrduText(text) {
-    if (!text) return text;
-    // 1. Standardize Allah word: Some sites use U+0670 (Khari Zabar) which breaks Jameel Noori ligatures
-    // We convert Alif + Lam + Lam + KhariZabar + Ha -> Alif + Lam + Lam + Ha
-    return text.replace(/\u0627\u0644\u0644\u0670\u0647/g, '\u0627\u0644\u0644\u0647');
-}
-
-/**
- * Heuristic to determine if text is specifically Urdu (distinguishing from Arabic/Persian).
- */
-function isUrdu(text, element) {
-    if (!text) return false;
-
-    // 0. NEGATIVE DETECTION: If Arabic/Persian specific characters are found, it's NOT Urdu
-    // ARABIC: ة (Teh Marbuta), ي (Yeh with 2 dots), ك (Kaf with different shape), أ, إ, ئ
-    // PERSIAN: پ, چ, ژ, گ (These are shared with Urdu, so we don't exclude them)
-    if (/[\u0629\u064A\u0643\u0623\u0625\u0626]/.test(text)) return false;
-
-    // Heuristic 1: Ancestor lang attribute
-    let el = element;
-    let depth = 0;
-    while (el && depth < 3) {
-        if (el.lang === 'ur' || el.lang === 'ur-PK') return true;
-        el = el.parentElement;
-        depth++;
-    }
-
-    // Heuristic 2: Known Urdu news site
-    const host = window.location.hostname;
-    if (NEWS_DOMAINS.some(d => host.includes(d))) return true;
-
-    // Heuristic 3: Presence of Urdu-unique characters (ٹ ڈ ڑ ں ھ ے)
-    if (/[\u0679\u0688\u0691\u06BA\u06BE\u06D2]/.test(text)) return true;
-
-    // Heuristic 4: Presence of Urdu-specific variants of shared characters
-    // Urdu uses ک (\u06A9) vs Arabic ك (\u0643)
-    // Urdu uses ہ (\u06DB / \u06C1) vs Arabic ه (\u0647)
-    // Urdu uses ی (\u06CC) vs Arabic ي (\u064A)
-    if (/[\u06A9\u06C1\u06CC]/.test(text)) return true;
-
-    // Heuristic 5: Urdu digits and punctuation (۰۱۲۳۴۵۶۷۸۹ ، ؛ ؟ ۔)
-    if (/[\u06F0-\u06F9\u060C\u061B\u061F\u06D4]/.test(text)) return true;
-
-    // If none found, assume it might be Arabic/Persian and skip
-    return false;
-}
 
 // KEYBOARD PROTECTION: Heuristic keywords to identify virtual keyboards
 const KEYBOARD_KEYWORDS = ['keyboard', 'keypad', 'virtual', 'kb-', '-kb', 'vk_'];
@@ -175,7 +115,7 @@ function wakeUp() {
     `;
 
     const styleEl = document.createElement('style');
-    styleEl.id = 'urdu-nastaleeq-core-v192';
+    styleEl.id = 'urdu-nastaleeq-core-v194';
     styleEl.textContent = fontFaces;
     document.head.appendChild(styleEl);
 }
@@ -217,10 +157,8 @@ function applyNastaleeq(node) {
         phraseRegex.lastIndex = 0; // Reset global regex
         while ((match = phraseRegex.exec(text)) !== null) {
             let matchedText = match[0];
-            if (!urduLettersOnly.test(matchedText)) continue;
-
-            // STRICT LANGUAGE DETECTION: Skip if it doesn't look like Urdu (e.g. Arabic/Persian)
-            if (!isUrdu(matchedText, parent)) continue;
+            // Liberal strategy: any Arabic script sequence gets styled
+            if (!/[\u0600-\u06FF]/.test(matchedText)) continue;
 
             hasValidMatch = true;
             wakeUp();
@@ -228,9 +166,6 @@ function applyNastaleeq(node) {
             if (match.index > lastIndex) {
                 fragment.appendChild(document.createTextNode(text.substring(lastIndex, match.index)));
             }
-
-            // NORMALIZE: Ensure "Allah" and other complex scripts work with Jameel Noori
-            matchedText = normalizeUrduText(matchedText);
 
             if (!extensionSettings.compatMode || matchedText.trim().replace(/[0-9\s]/g, '').length >= 1) {
                 const span = document.createElement('span');
@@ -268,13 +203,32 @@ function applyNastaleeq(node) {
     }
 }
 
+// PERFORMANCE: Surgical sub-detection for input fields
+function handleInputDetection(e) {
+    const target = e.target;
+    if (!target) return;
+
+    const value = target.value || target.innerText || "";
+    // Speed optimization: search for ANY Urdu char
+    const hasUrdu = /[\u0600-\u06FF]/.test(value);
+
+    if (hasUrdu) {
+        if (!target.classList.contains('urdu-typing-detected')) {
+            target.classList.add('urdu-typing-detected');
+            wakeUp();
+        }
+    } else {
+        target.classList.remove('urdu-typing-detected');
+    }
+}
+
 let lastAppliedStyles = "";
 
 function updateStyles() {
-    let styleEl = document.getElementById('urdu-font-size-style-v192');
+    let styleEl = document.getElementById('urdu-font-size-style-v194');
     if (!styleEl) {
         styleEl = document.createElement('style');
-        styleEl.id = 'urdu-font-size-style-v192';
+        styleEl.id = 'urdu-font-size-style-v194';
         document.head.appendChild(styleEl);
     }
 
@@ -284,77 +238,48 @@ function updateStyles() {
     }
 
     const { fontSize, fontFamily } = extensionSettings;
-    const host = window.location.hostname;
 
-    // SMART NEWS DETECTION LOGIC
-    const isKnownNewsSite = NEWS_DOMAINS.some(d => host.includes(d));
-    const isUrduPage = document.documentElement.lang === 'ur' || document.documentElement.lang === 'ur-PK';
-    const isNewsOrUrduSite = isKnownNewsSite || isUrduPage;
-
-    // "Auto" Mode logic check
-    const userIsUsingDefault = fontSize == 24;
-
-    let appliedFontSize;
-    let appliedLineHeight;
-
-    if (isNewsOrUrduSite && userIsUsingDefault) {
-        appliedFontSize = 'inherit';
-        appliedLineHeight = 'inherit';
-    } else {
-        appliedFontSize = fontSize + 'px';
-        appliedLineHeight = '2.0';
-    }
+    const userIsUsingDefault = fontSize == 20;
+    const appliedFontSize = userIsUsingDefault ? 'inherit' : fontSize + 'px';
+    const appliedLineHeight = userIsUsingDefault ? 'inherit' : '1.8';
 
     const styles = `
-        /* SURGICAL APPLICATION: Broad styles ONLY on known Urdu sites or if user changed font size */
-        ${(isNewsOrUrduSite || !userIsUsingDefault) ? `
-        article, section, main, p, li, h1, h2, h3, h4, h5, h6, [role="article"], .article-content, .entry-content, .post-content {
-            font-family: "${fontFamily}", "Noto Nastaliq Urdu", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-            font-feature-settings: "kern" 1, "liga" 1, "clig" 1, "calt" 1, "ccmp" 1, "locl" 1 !important;
-            font-variant-ligatures: common-ligatures contextual !important;
-            font-kerning: normal !important;
-            font-synthesis: none !important;
-            letter-spacing: normal !important;
-            word-spacing: normal !important;
-            text-rendering: optimizeLegibility !important;
-            text-shadow: none !important;
-            font-style: normal !important;
-        }
-        ` : ''}
-
-        /* Essential wrappers applied surgically by our code */
+        /* ZERO INTERFERENCE MODE (Static Text) */
         span.urdu-nastaleeq { 
             font-size: ${appliedFontSize} !important; 
             line-height: ${appliedLineHeight} !important;
             font-family: "${fontFamily}", "Noto Nastaliq Urdu", serif !important;
             font-feature-settings: "kern" 1, "liga" 1, "clig" 1, "calt" 1, "ccmp" 1, "locl" 1 !important;
-            font-variant-ligatures: common-ligatures contextual !important;
-            font-kerning: normal !important;
-            font-synthesis: none !important;
-            letter-spacing: normal !important;
-            word-spacing: normal !important;
-            text-rendering: optimizeLegibility !important;
             display: inline !important;
             direction: rtl !important;
             font-style: normal !important;
+            text-rendering: optimizeLegibility !important;
         }
         
-        /* FIX FOR FACEBOOK/INPUT CLIPPING: Focused specifically on actual inputs */
-        input, textarea, [contenteditable], [role="textbox"], .input-box {
+        /* SOCIAL MEDIA OVERRIDE */
+        [data-testid="tweetText"] span.urdu-nastaleeq, 
+        yt-formatted-string span.urdu-nastaleeq, 
+        div[dir="auto"] span.urdu-nastaleeq, 
+        span[dir="auto"] span.urdu-nastaleeq, 
+        div[dir="rtl"] span.urdu-nastaleeq, 
+        span[dir="rtl"] span.urdu-nastaleeq {
+            font-size: ${userIsUsingDefault ? '20px' : fontSize + 'px'} !important;
+            line-height: 1.8 !important;
+        }
+
+        /* SURGICAL TYPING (v1.9.4): Only activiated when Urdu is detected to save English performance */
+        .urdu-typing-detected, .urdu-typing-detected * {
+            font-family: "${fontFamily}", "Noto Nastaliq Urdu", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+            font-feature-settings: "kern" 1, "liga" 1, "clig" 1, "calt" 1, "ccmp" 1, "locl" 1 !important;
             line-height: 1.5 !important;
             padding-bottom: 2px !important;
             overflow-y: visible !important;
-            font-family: "${fontFamily}", "Noto Nastaliq Urdu", serif !important;
-            font-feature-settings: "kern" 1, "liga" 1, "clig" 1, "calt" 1, "ccmp" 1, "locl" 1 !important;
-            letter-spacing: normal !important;
+            direction: rtl !important;
         }
         
-        ${(!isNewsOrUrduSite || !userIsUsingDefault) ? `
-             h1, h2, h3, h4, h5, h6 {
-                 overflow: visible !important;
-                 line-height: ${appliedLineHeight} !important;
-             }
-        ` : ''}
+        h1, h2, h3, h4, h5, h6 {
+            overflow: visible !important;
+        }
     `;
 
     if (styles !== lastAppliedStyles) {
@@ -372,13 +297,15 @@ function init() {
         extensionSettings = {
             globalEnable: result.globalEnable !== false,
             fontFamily: result.fontFamily || "Jameel Noori Nastaleeq",
-            fontSize: result.fontSize || 24,
+            fontSize: result.fontSize || 20,
             compatMode: result.compatMode === true,
             isSiteEnabled: (result.siteSettings && result.siteSettings[host] !== false)
         };
 
         if (extensionSettings.globalEnable && extensionSettings.isSiteEnabled) {
             updateStyles();
+            // Bind surgical detection
+            document.addEventListener('input', handleInputDetection, true);
         }
     });
 }
